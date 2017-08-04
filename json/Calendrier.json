@@ -1,0 +1,196 @@
+{
+	 "name": "MasqueCalendrier",
+	 "TimeAggregate": {
+		 "caption": 2016,
+		 "timeFrom": "2016-01-01T00:00:00",
+		 "timeTo": "2016-12-31T23:59:59",
+		 "TimeAggregate": [
+			{
+				 "caption": "1er trimestre",
+				 "timeFrom": "2016-01-01T00:00:00",
+				 "timeTo": "2016-03-31T23:59:59",
+				 "TimeAggregate": [
+					{
+						 "caption": "Janvier",
+						 "timeFrom": "2016-01-01T00:00:00",
+						 "timeTo": "2016-01-31T23:59:59"
+					},
+					{
+						 "caption": "Février",
+						 "timeFrom": "2016-02-01T00:00:00",
+						 "timeTo": "2016-02-29T23:59:59"
+					},
+					{
+						 "caption": "Mars",
+						 "timeFrom": "2016-03-01T00:00:00",
+						 "timeTo": "2016-03-31T23:59:59"
+					}
+				]
+			},
+			{
+				 "caption": "2e trimestre",
+				 "timeFrom": "2016-04-01T00:00:00",
+				 "timeTo": "2016-06-30T23:59:59",
+				 "TimeAggregate": [
+					{
+						 "caption": "Avril",
+						 "timeFrom": "2016-04-01T00:00:00",
+						 "timeTo": "2016-04-30T23:59:59"
+					},
+					{
+						 "caption": "Mai",
+						 "timeFrom": "2016-05-01T00:00:00",
+						 "timeTo": "2016-05-31T23:59:59",
+						 "TimeAggregate": [
+							{
+								 "caption": "S17",
+								 "timeFrom": "2016-05-01T00:00:00",
+								 "timeTo": "2016-05-01T23:59:59",
+								"TimeAggregate": [
+									{
+										"caption": "lundi",
+										"timeFrom": "2016-05-01T00:00:00",
+										"timeTo": "2016-05-01T23:59:59"
+									},
+									{
+										"caption": "mardi",
+										"timeFrom": "2016-05-01T00:00:00",
+										"timeTo": "2016-05-01T23:59:59"
+									}
+								]
+							},
+							{
+								 "caption": "S18",
+								 "timeFrom": "2016-05-02T00:00:00",
+								 "timeTo": "2016-05-08T23:59:59"
+							},
+							{
+								 "caption": "S19",
+								 "timeFrom": "2016-05-09T00:00:00",
+								 "timeTo": "2016-05-15T23:59:59"
+							},
+							{
+								 "caption": "S20",
+								 "timeFrom": "2016-05-16T00:00:00",
+								 "timeTo": "2016-05-22T23:59:59"
+							},
+							{
+								 "caption": "S21",
+								 "timeFrom": "2016-05-23T00:00:00",
+								 "timeTo": "2016-05-29T23:59:59"
+							},
+							{
+								 "caption": "S22",
+								 "timeFrom": "2016-05-30T00:00:00",
+								 "timeTo": "2016-05-31T23:59:59"
+							}
+						]
+					},
+					{
+						 "caption": "Juin",
+						 "timeFrom": "2016-06-01T00:00:00",
+						 "timeTo": "2016-06-30T23:59:59",
+						 "TimeAggregate": [
+							{
+								 "caption": "S22",
+								 "timeFrom": "2016-06-01T00:00:00",
+								 "timeTo": "2016-06-05T23:59:59"
+							},
+							{
+								 "caption": "S23",
+								 "timeFrom": "2016-06-06T00:00:00",
+								 "timeTo": "2016-06-12T23:59:59"
+							},
+							{
+								 "caption": "S24",
+								 "timeFrom": "2016-06-13T00:00:00",
+								 "timeTo": "2016-06-19T23:59:59"
+							},
+							{
+								 "caption": "S25",
+								 "timeFrom": "2016-06-20T00:00:00",
+								 "timeTo": "2016-06-26T23:59:59"
+							},
+							{
+								 "caption": "S26",
+								 "timeFrom": "2016-06-27T00:00:00",
+								 "timeTo": "2016-06-30T23:59:59"
+							}
+						]
+					}
+				]
+			},
+			{
+				 "caption": "3e trimestre",
+				 "timeFrom": "2016-07-01T00:00:00",
+				 "timeTo": "2016-09-30T23:59:59",
+				 "TimeAggregate": [
+					{
+						 "caption": "juillet",
+						 "timeFrom": "2016-07-01T00:00:00",
+						 "timeTo": "2016-07-31T23:59:59",
+						 "TimeAggregate": [
+							{
+								 "caption": "S26",
+								 "timeFrom": "2016-07-01T00:00:00",
+								 "timeTo": "2016-07-03T23:59:59"
+							},
+							{
+								 "caption": "S27",
+								 "timeFrom": "2016-07-04T00:00:00",
+								 "timeTo": "2016-07-10T23:59:59"
+							},
+							{
+								 "caption": "S28",
+								 "timeFrom": "2016-07-11T00:00:00",
+								 "timeTo": "2016-07-17T23:59:59"
+							},
+							{
+								 "caption": "S29",
+								 "timeFrom": "2016-07-18T00:00:00",
+								 "timeTo": "2016-07-24T23:59:59"
+							},
+							{
+								 "caption": "S30",
+								 "timeFrom": "2016-07-25T00:00:00",
+								 "timeTo": "2016-07-31T23:59:59"
+							}
+						]
+					},
+					{
+						 "caption": "Août",
+						 "timeFrom": "2016-08-01T00:00:00",
+						 "timeTo": "2016-08-31T23:59:59"
+					},
+					{
+						 "caption": "Septembre",
+						 "timeFrom": "2016-09-01T00:00:00",
+						 "timeTo": "2016-09-30T23:59:59"
+					}
+				]
+			},
+			{
+				 "caption": "4e trimestre",
+				 "timeFrom": "2016-10-01T00:00:00",
+				 "timeTo": "2016-12-31T23:59:59",
+				 "TimeAggregate": [
+					{
+						 "caption": "Octobre",
+						 "timeFrom": "2016-10-01T00:00:00",
+						 "timeTo": "2016-10-31T23:59:59"
+					},
+					{
+						 "caption": "Novembre",
+						 "timeFrom": "2016-11-01T00:00:00",
+						 "timeTo": "2016-11-30T23:59:59"
+					},
+					{
+						 "caption": "Décembre",
+						 "timeFrom": "2016-12-01T00:00:00",
+						 "timeTo": "2016-12-31T23:59:59"
+					}
+				]
+			}
+		]
+	}
+}

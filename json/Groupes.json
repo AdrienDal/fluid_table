@@ -1,0 +1,47 @@
+{
+	"name": "PlanComptable",
+	"Group": {
+		"caption": "Exploitation",
+		"order": 1,
+		"groupId": 1,
+		"Group": {
+			"caption": "Charges",
+			"order": 1,
+			"groupId": 11,
+			"Group": [
+				{
+					"caption": "Transport",
+					"order": 1,
+					"groupId": 111,
+					"Group": [
+						{
+							"caption": "Fiat",
+							"order": 1,
+							"groupId": 1111
+						},
+						{
+							"caption": "Skoda",
+							"order": 2,
+							"groupId": 1112
+						}
+					]
+				},
+				{
+					"caption": "Logement",
+					"order": 2,
+					"groupId": 112
+				},
+				{
+					"caption": "Santé",
+					"order": 3,
+					"groupId": 113
+				},
+				{
+					"caption": "Ménage",
+					"order": 4,
+					"groupId": 114
+				}
+			]
+		}
+	}
+}

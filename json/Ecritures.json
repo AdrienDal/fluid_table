@@ -1,0 +1,215 @@
+{
+	"name": "Ecritures",
+	"Entry": [
+		{
+			"entryId": 1,
+			"caption": "Courses Migros",
+			"date": "2016-05-05T00:00:00",
+			"accountId": 8,
+			"amount": 83
+		},
+		{
+			"entryId": 2,
+			"caption": "Dr Maboule",
+			"date": "2016-05-07T00:00:00",
+			"accountId": 10,
+			"amount": 215
+		},
+		{
+			"entryId": 3,
+			"caption": "Courses Coop",
+			"date": "2016-05-07T00:00:00",
+			"accountId": 8,
+			"amount": 65.3
+		},
+		{
+			"entryId": 4,
+			"caption": "TCS Fiat",
+			"date": "2016-05-08T00:00:00",
+			"accountId": 3,
+			"amount": 95
+		},
+		{
+			"entryId": 5,
+			"caption": "Loyer du mois de mai",
+			"date": "2016-05-09T00:00:00",
+			"accountId": 6,
+			"amount": 800
+		},
+		{
+			"entryId": 6,
+			"caption": "Loyer du mois de juin",
+			"date": "2016-06-09T00:00:00",
+			"accountId": 6,
+			"amount": 800
+		},
+		{
+			"entryId": 7,
+			"caption": "Loyer du mois de juillet",
+			"date": "2016-07-09T00:00:00",
+			"accountId": 6,
+			"amount": 800
+		},
+		{
+			"entryId": 8,
+			"caption": "Station essence",
+			"date": "2016-05-12T00:00:00",
+			"accountId": 5,
+			"amount": 53.25
+		},
+		{
+			"entryId": 9,
+			"caption": "Station essence",
+			"date": "2016-05-30T00:00:00",
+			"accountId": 5,
+			"amount": 68.4
+		},
+		{
+			"entryId": 10,
+			"caption": "Station essence",
+			"date": "2016-06-20T00:00:00",
+			"accountId": 5,
+			"amount": 38
+		},
+		{
+			"entryId": 11,
+			"caption": "Station essence",
+			"date": "2016-07-11T00:00:00",
+			"accountId": 5,
+			"amount": 69
+		},
+		{
+			"entryId": 12,
+			"caption": "Station essence",
+			"date": "2016-07-25T00:00:00",
+			"accountId": 5,
+			"amount": 121.4
+		},
+		{
+			"entryId": 13,
+			"caption": "Denner",
+			"date": "2016-05-16T00:00:00",
+			"accountId": 8,
+			"amount": 53
+		},
+		{
+			"entryId": 14,
+			"caption": "Lidl",
+			"date": "2016-05-23T00:00:00",
+			"accountId": 8,
+			"amount": 18.9
+		},
+		{
+			"entryId": 15,
+			"caption": "Courses Coop",
+			"date": "2016-06-07T00:00:00",
+			"accountId": 8,
+			"amount": 84
+		},
+		{
+			"entryId": 16,
+			"caption": "Courses Migros",
+			"date": "2016-06-23T00:00:00",
+			"accountId": 8,
+			"amount": 65.3
+		},
+		{
+			"entryId": 17,
+			"caption": "Denner",
+			"date": "2016-07-01T00:00:00",
+			"accountId": 8,
+			"amount": 54.5
+		},
+		{
+			"entryId": 18,
+			"caption": "Migros",
+			"date": "2016-07-08T00:00:00",
+			"accountId": 8,
+			"amount": 28.9
+		},
+		{
+			"entryId": 19,
+			"caption": "Denner",
+			"date": "2016-07-23T00:00:00",
+			"accountId": 8,
+			"amount": 19
+		},
+		{
+			"entryId": 20,
+			"caption": "Assurance Group Mutuel",
+			"date": "2016-05-23T00:00:00",
+			"accountId": 9,
+			"amount": 940
+		},
+		{
+			"entryId": 21,
+			"caption": "Assurance Group Mutuel",
+			"date": "2016-06-15T00:00:00",
+			"accountId": 9,
+			"amount": 940
+		},
+		{
+			"entryId": 22,
+			"caption": "Assurance Group Mutuel",
+			"date": "2016-07-16T00:00:00",
+			"accountId": 9,
+			"amount": 940
+		},
+		{
+			"entryId": 23,
+			"caption": "Impôt Fiat",
+			"date": "2016-06-07T00:00:00",
+			"accountId": 3,
+			"amount": 121
+		},
+		{
+			"entryId": 24,
+			"caption": "Impôt Skoda",
+			"date": "2016-06-30T00:00:00",
+			"accountId": 4,
+			"amount": 185.5
+		},
+		{
+			"entryId": 25,
+			"caption": "SIG",
+			"date": "2016-05-24T00:00:00",
+			"accountId": 4,
+			"amount": 194.55
+		},
+		{
+			"entryId": 26,
+			"caption": "SIG",
+			"date": "2016-06-23T00:00:00",
+			"accountId": 4,
+			"amount": 206.2
+		},
+		{
+			"entryId": 27,
+			"caption": "SIG",
+			"date": "2016-07-09T00:00:00",
+			"accountId": 4,
+			"amount": 234
+		},
+		{
+			"entryId": 28,
+			"caption": "Babiole",
+			"date": "2016-06-30T00:00:00",
+			"accountId": 12,
+			"amount": 34
+		},
+		{
+			"entryId": 29,
+			"caption": "Resto",
+			"date": "2016-07-15T00:00:00",
+			"accountId": 12,
+			"amount": 54.9
+		},
+		{
+			"entryId": 30,
+			"caption": "Café",
+			"date": "2016-07-16T00:00:00",
+			"accountId": 12,
+			"amount": 3.8
+		}
+	]
+}

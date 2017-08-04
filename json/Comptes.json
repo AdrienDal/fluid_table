@@ -1,0 +1,65 @@
+{
+	"name": "Comptes",
+	"Account": [
+		{
+			"accountId": 1,
+			"caption": "Assurance Fiat",
+			"groupId": 1111
+		},
+		{
+			"accountId": 2,
+			"caption": "Assurance Skoda",
+			"groupId": 1112
+		},
+		{
+			"accountId": 3,
+			"caption": "Taxes Auto Fiat",
+			"groupId": 1111
+		},
+		{
+			"accountId": 4,
+			"caption": "Taxes Auto Skoda",
+			"groupId": 1112
+		},
+		{
+			"accountId": 5,
+			"caption": "Frais essence",
+			"groupId": 111
+		},
+		{
+			"accountId": 6,
+			"caption": "Loyer",
+			"groupId": 112
+		},
+		{
+			"accountId": 7,
+			"caption": "Electricité et eau",
+			"groupId": 112
+		},
+		{
+			"accountId": 8,
+			"caption": "Nourriture",
+			"groupId": 114
+		},
+		{
+			"accountId": 9,
+			"caption": "Assurance maladie",
+			"groupId": 113
+		},
+		{
+			"accountId": 10,
+			"caption": "Frais dentaires",
+			"groupId": 113
+		},
+		{
+			"accountId": 11,
+			"caption": "Dépenses ordinaires",
+			"groupId": 114
+		},
+		{
+			"accountId": 12,
+			"caption": "Dépenses extraordinaires",
+			"groupId": 114
+		}
+	]
+}

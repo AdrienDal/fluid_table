@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module" : "amd",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outFile": "main.js",
+    "sourceMap": true,
+    "compileOnSave": true
+  },
+  "files":[
+    "ecriture.ts",
+    "bank.ts",
+    "account.ts",
+    "calendrier.ts",
+    "prototype.ts"
+  ]
+}
