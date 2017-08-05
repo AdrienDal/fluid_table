@@ -34,24 +34,6 @@ var bank = (function () {
         this.rotate = "";
         return div;
     };
-    bank.prototype.afficheFils = function () {
-        var bank_actuel_tmp = [];
-        var liste_td = "<div class='compte'>";
-        for (var i = 0; i < bank.bank_actuel.length; i++) {
-            if (bank.bank_actuel[i].groupe_id != this.groupe_id) {
-                bank_actuel_tmp.push(bank.bank_actuel[i]);
-            }
-            else {
-                for (var i_1 = 0; i_1 < this.fils.length; i_1++) {
-                    liste_td += "<div class='row'>" + this.fils[i_1].toString() + "</div>";
-                    bank_actuel_tmp.push(this.fils[i_1]);
-                }
-                liste_td += "</div>";
-            }
-        }
-        bank.bank_actuel = bank_actuel_tmp;
-        return liste_td;
-    };
     bank.get = function (groupe_id, tmp_bank) {
         if (groupe_id.length > 1) {
             for (var i = 1; i < groupe_id.length; i++) {
@@ -59,6 +41,44 @@ var bank = (function () {
             }
         }
         return tmp_bank;
+    };
+    bank.prototype.afficheFils = function (div) {
+        if (this.fils.length > 0) {
+            div.addClass('open');
+            div.addClass('rotate');
+            var bank_actuel_tmp = [];
+            var liste_td = "<div class='compte'>";
+            for (var i = 0; i < bank.bank_actuel.length; i++) {
+                if (bank.bank_actuel[i].groupe_id != this.groupe_id) {
+                    bank_actuel_tmp.push(bank.bank_actuel[i]);
+                }
+                else {
+                    for (var i_1 = 0; i_1 < this.fils.length; i_1++) {
+                        liste_td += "<div class='row'>" + this.fils[i_1].toString() + "</div>";
+                        bank_actuel_tmp.push(this.fils[i_1]);
+                    }
+                    liste_td += "</div>";
+                }
+            }
+            bank.bank_actuel = bank_actuel_tmp;
+            div.after(liste_td);
+        }
+    };
+    bank.prototype.removeFils = function (div) {
+        div.nextAll("div").remove();
+        div.removeClass('open');
+        var bank_actuel_tmp = [];
+        var replace = true;
+        for (var i = 0; i < bank.bank_actuel.length; i++) {
+            if (!bank.bank_actuel[i].groupe_id.toString().startsWith(this.groupe_id)) {
+                bank_actuel_tmp.push(bank.bank_actuel[i]);
+            }
+            else if (replace) {
+                bank_actuel_tmp.push(this);
+                replace = false;
+            }
+        }
+        bank.bank_actuel = bank_actuel_tmp;
     };
     bank.prototype.setAccountToGroupes = function (tabComptes) {
         for (var i = 0; i < this.fils.length; i++) {
@@ -137,24 +157,6 @@ var calendrier = (function () {
         this.colspan = "";
         return div;
     };
-    calendrier.prototype.afficheFils = function () {
-        var cal_actuel_tmp = [];
-        var liste_div = "<div class='row'>";
-        for (var i = 0; i < calendrier.cal_actuel.length; i++) {
-            if (calendrier.cal_actuel[i].cal_id != this.cal_id) {
-                cal_actuel_tmp.push(calendrier.cal_actuel[i]);
-            }
-            else {
-                for (var i_2 = 0; i_2 < this.fils.length; i_2++) {
-                    liste_div += this.fils[i_2].toString();
-                    cal_actuel_tmp.push(this.fils[i_2]);
-                }
-            }
-        }
-        liste_div += "</div>";
-        calendrier.cal_actuel = cal_actuel_tmp;
-        return liste_div;
-    };
     calendrier.get = function (cal_id, tmp_cal) {
         if (cal_id.length > 1) {
             for (var i = 1; i < cal_id.length; i++) {
@@ -163,30 +165,69 @@ var calendrier = (function () {
         }
         return tmp_cal;
     };
-    calendrier.init = function (data) {
-        var i_annee = 0;
-        var cal = new calendrier(data.TimeAggregate.caption, new Date(data.TimeAggregate.timeFrom), new Date(data.TimeAggregate.timeTo), i_annee + '');
-        var i_trim;
-        var i_mois;
-        var i_sema;
-        i_trim = 0;
-        $(data.TimeAggregate.TimeAggregate).each(function () {
-            i_mois = 0;
-            cal.fils[i_trim] = new calendrier(this.caption, new Date(this.timeFrom), new Date(this.timeTo), i_annee + '' + i_trim);
-            $(this.TimeAggregate).each(function () {
-                i_sema = 0;
-                cal.fils[i_trim].fils[i_mois] = new calendrier(this.caption, new Date(this.timeFrom), new Date(this.timeTo), i_annee + '' + i_trim + i_mois);
-                if (Array.isArray(this.TimeAggregate)) {
-                    $(this.TimeAggregate).each(function () {
-                        cal.fils[i_trim].fils[i_mois].fils[i_sema] = new calendrier(this.caption, new Date(this.timeFrom), new Date(this.timeTo), i_annee + '' + i_trim + i_mois + i_sema);
-                        i_sema++;
-                    });
+    calendrier.prototype.afficheFils = function (div) {
+        if (this.fils.length > 0) {
+            div.addClass('open');
+            var cal_actuel_tmp = [];
+            var liste_div = "<div class='row'>";
+            for (var i = 0; i < calendrier.cal_actuel.length; i++) {
+                if (calendrier.cal_actuel[i].cal_id != this.cal_id) {
+                    cal_actuel_tmp.push(calendrier.cal_actuel[i]);
                 }
-                i_mois++;
-            });
-            i_trim++;
-        });
-        return cal;
+                else {
+                    for (var i_2 = 0; i_2 < this.fils.length; i_2++) {
+                        liste_div += this.fils[i_2].toString();
+                        cal_actuel_tmp.push(this.fils[i_2]);
+                    }
+                }
+            }
+            liste_div += "</div>";
+            calendrier.cal_actuel = cal_actuel_tmp;
+            div.append(liste_div);
+        }
+    };
+    calendrier.prototype.removeFils = function (div) {
+        div.children().remove();
+        div.removeClass('open');
+        var cal_actuel_tmp = [];
+        var replace = true;
+        for (var i = 0; i < calendrier.cal_actuel.length; i++) {
+            if (!calendrier.cal_actuel[i].cal_id.startsWith(this.cal_id)) {
+                cal_actuel_tmp.push(calendrier.cal_actuel[i]);
+            }
+            else if (replace) {
+                cal_actuel_tmp.push(this);
+                replace = false;
+            }
+        }
+        calendrier.cal_actuel = cal_actuel_tmp;
+    };
+    calendrier.init = function (data) {
+        var getFils = function (x, b) {
+            if (typeof (x.TimeAggregate) != "undefined" || (Array.isArray(x))) {
+                if (Array.isArray(x)) {
+                    for (var i = 0; i < x.length; i++) {
+                        if (typeof (x[i].TimeAggregate) != "undefined") {
+                            b.fils.push(getFils(x[i].TimeAggregate, new calendrier(x[i].caption, new Date(x[i].timeFrom), new Date(x[i].timeTo), '' + b.cal_id + i)));
+                        }
+                        else {
+                            b.fils.push(new calendrier(x[i].caption, new Date(x[i].timeFrom), new Date(x[i].timeTo), '' + b.cal_id + i));
+                        }
+                    }
+                }
+                else {
+                    b.fils.push(getFils(x.TimeAggregate, new calendrier(x.caption, new Date(x.timeFrom), new Date(x.timeTo), '' + b.cal_id + 0)));
+                }
+                return b;
+            }
+            else {
+                return new calendrier(x.caption, new Date(x.timeFrom), new Date(x.timeTo), '' + b.cal_id + 0);
+            }
+        };
+        var i_annee = 0;
+        var tmp_cal = new calendrier(data.TimeAggregate.caption, new Date(data.TimeAggregate.timeFrom), new Date(data.TimeAggregate.timeTo), '0');
+        tmp_cal = getFils(data.TimeAggregate.TimeAggregate, tmp_cal);
+        return tmp_cal;
     };
     calendrier.cal_actuel = [];
     return calendrier;
@@ -223,37 +264,37 @@ $.when($.getJSON('json/Calendrier.json', function (data) {
     init_affichage();
 });
 var init_affichage = function () {
-    $("#table_cal").append(cal.toString());
-    $("#table_compte").append("<div class='row'>" + banko.toString() + "</div>");
-    $("#table_montant").append("<div class='montant' id='0x0'>" + banko.getTotal(cal.from, cal.to).toFixed(2) + "</div></div>");
-    calendrier.cal_actuel.push(cal);
-    bank.bank_actuel.push(banko);
+    $("#table_cal").html(cal.toString());
+    $("#table_compte").html("<div class='row'>" + banko.toString() + "</div>");
+    $("#table_montant").html("<div class='montant' id='0x0'>" + banko.getTotal(cal.from, cal.to).toFixed(2) + "</div></div>");
+    calendrier.cal_actuel = [cal];
+    bank.bank_actuel = [banko];
 };
 $(document).on("click", ".div_cal", function (e) {
     if (e.target !== e.currentTarget)
         return;
     var div = $(this);
     var cal_id = div.attr('tag');
+    var tmp_cal = calendrier.get(cal_id, cal);
     if (!div.hasClass('open')) {
-        var tmp_cal = calendrier.get(cal_id, cal);
-        if (tmp_cal.fils.length > 0) {
-            div.addClass('open');
-            div.append(tmp_cal.afficheFils());
-        }
+        tmp_cal.afficheFils(div);
     }
     else {
+        tmp_cal.removeFils(div);
     }
     majMontant();
 });
 $(document).on("click", ".div_compte", function (e) {
+    if (e.target !== e.currentTarget)
+        return;
     var div = $(this);
     var groupe_id = div.attr('tag');
+    var tmp_banko = bank.get(groupe_id, banko);
     if (!div.hasClass('open')) {
-        var tmp_banko = bank.get(groupe_id, banko);
-        if (tmp_banko.fils.length > 0) {
-            div.addClass('open');
-            div.after(tmp_banko.afficheFils());
-        }
+        tmp_banko.afficheFils(div);
+    }
+    else {
+        tmp_banko.removeFils(div);
     }
     majMontant();
 });
@@ -271,19 +312,18 @@ var majMontant = function () {
 $(document).on('mouseover', '.montant', function () {
     var xy = $(this).attr('id');
     var lim = xy.indexOf('x');
-    console.log(lim);
     var x = xy.substr(0, lim);
     var y = xy.substr(lim + 1);
-    console.log(y);
     var bank_tmp = bank.bank_actuel[x];
     var cal_tmp = calendrier.cal_actuel[y];
-    $(".montant").css('background-color', 'black').css('color', 'white');
+    $(".montant").css('background-color', 'black').css('color', 'white').css('border', 'solid white 1px');
     for (var i = 0; i <= x; i++) {
         $('#' + i + 'x' + y).css('background-color', "rgb(245,245," + (i * 20) + ")").css('color', 'black');
     }
     for (var i = 0; i <= y; i++) {
         $('#' + x + 'x' + i).css('background-color', "rgb(245,245," + (i * 20) + ")").css('color', 'black');
     }
+    $(this).css('border', 'solid red 3px');
     $(".compte").each(function () {
         $(this).css('background-color', 'black').css('color', 'white');
         if ($(this).attr('tag') == bank_tmp.groupe_id) {

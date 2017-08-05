@@ -1,37 +1,20 @@
+img {
+    width : 15px;
+    align-content: flex-end;
+}
+
+
 body  {
     background-color: black;
     color : white;
     margin-left : 20px;
 }
 
-img {
-    width : 15px;
-    align-content: flex-end;
-}
-
-/*
-.rotate {
-    height : 100px !important;
-    top : 20px;
-    position: relative;
-    padding : 5px;
-    max-width : 20px;
-    font-size: 17px;
-    -webkit-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    transform: rotate(270deg);
-}
-*/
-
-.rotate img {
-    display: none;
-}
 
 
 .container {
     display: table;
     text-align: center;
-    table-layout: fixed;
 }
 
 .row  {
@@ -47,7 +30,7 @@ img {
     height : 30px;
     border : solid white 1px;
     display: table-cell;
-    min-width : 100px;
+    min-width : 80px;
     vertical-align: middle;
 }
 
@@ -56,7 +39,7 @@ img {
     height : 30px;
     border : solid white 1px;
     display: table-cell;
-    min-width : 100px;
+    min-width : 80px;
     vertical-align: middle;
 }
 
@@ -65,12 +48,21 @@ img {
     white-space: nowrap;
     border-collapse: collapse;
     height : 30px;
-    border-bottom : solid white 1px;
-    border-right : solid white 1px;
-    border-left : solid white 1px;
+    border : solid white 1px;
     display: table-cell;
-    min-width : 100px;
     vertical-align: middle;
 }
 
+/*
+.rotate {
+    min-width : 0px;
+    max-width : 20px;
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
 
+
+.rotate img {
+    display: none;
+}*/

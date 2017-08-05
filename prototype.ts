@@ -1,11 +1,11 @@
-let cal;
-let banko;
+let cal; // contient le calendrier
+let banko; // contient le plan comptable
 
-let tabComptes = [];
-let tabEcritures = [];
+let tabComptes = []; //contient un tableau des comptes chargés
+let tabEcritures = []; //contient un tableau des écritures chargées
 
 $.when($.getJSON('json/Calendrier.json', (data) => {
-    cal = calendrier.init(data);
+    cal = calendrier.init(data); //initialiste le calendrier
 }),
 $.getJSON('json/Ecritures.json', (data) => {
     $(data.Entry).each(function() {
@@ -14,7 +14,7 @@ $.getJSON('json/Ecritures.json', (data) => {
 }),
 $.getJSON('json/Comptes.json', (data) => {
     let ascii = 65;
-    $(data.Account).each(function () {
+    $(data.Account).each(function () { //Ajoute un caractère à la fin du groupeId afin de différencier 2 accounts appartenant au même groupe
         if (ascii > 89) {
             ascii = 65;
         }
@@ -22,10 +22,13 @@ $.getJSON('json/Comptes.json', (data) => {
     })
 }),
 $.getJSON('json/Groupes.json', (data) => {
-    banko = bank.init(data);
+    banko = bank.init(data); //initialiste le plan comptable
 }),
 ).then(() => {
 
+    /*
+    * lie les écritures au compte correspondant
+     */
     for (let i = 0; i < tabEcritures.length; i++ ){
         for (let y = 0; y < tabComptes.length; y++ ){
             if (tabEcritures[i].account_id == tabComptes[y].account_id) {
@@ -34,102 +37,64 @@ $.getJSON('json/Groupes.json', (data) => {
         }
     }
 
-    banko.setAccountToGroupes(tabComptes);
+    banko.setAccountToGroupes(tabComptes); //ajoute les comptes aux différents groupes du plan comptable
 
     init_affichage();
 });
 
-
+/*
+* initialisation de l'affichage avec les informations à la racine du plan comptable et du calendrier
+ */
 let init_affichage = () => {
-        $("#table_cal").append(cal.toString());
-        $("#table_compte").append("<div class='row'>"+banko.toString()+"</div>");
-        $("#table_montant").append("<div class='montant' id='0x0'>"+banko.getTotal(cal.from, cal.to).toFixed(2)+"</div></div>");
+        $("#table_cal").html(cal.toString());
+        $("#table_compte").html("<div class='row'>"+banko.toString()+"</div>");
+        $("#table_montant").html("<div class='montant' id='0x0'>"+banko.getTotal(cal.from, cal.to).toFixed(2)+"</div></div>");
 
-        calendrier.cal_actuel.push(cal);
-        bank.bank_actuel.push(banko);
+        calendrier.cal_actuel = [cal];
+        bank.bank_actuel = [banko];
 }
 
+/*
+* click sur une zone calendrier
+*   -  récupère l'instance avec l'indentifiant inscrit dans le tag de l'élément
+*   -  execute afficheFils ou removeFils en testant si l'élément possède la class open
+ */
 $(document).on("click",".div_cal", function(e) {
     if(e.target !== e.currentTarget) return;
     let div = $(this);
     let cal_id = div.attr('tag');
+    let tmp_cal = calendrier.get(cal_id,cal);
     if (!div.hasClass('open')) {
-        let tmp_cal = calendrier.get(cal_id,cal);
-
-        if (tmp_cal.fils.length > 0) {
-            div.addClass('open');
-            div.append(tmp_cal.afficheFils());
-        }
+        tmp_cal.afficheFils(div);
     }else {
-       /* let tmp_cal =  cal;
-        tmp_cal.open = "open";
-        tmp_cal.colspan = "10";
-        if (cal_id === "0") {
-            calendrier.cal_actuel = [];
-            calendrier.cal_actuel.push(tmp_cal);
-            tmp_cal.open = "";
-        }
-        $("#table_cal").html("<table><tr>" + tmp_cal.toString() + "</tr></table>");
-        if (cal_id.length > 1) {
-            for (let i = 1; i < cal_id.length; i++) {
-                if (i < cal_id.length-1 ) {
-                    tmp_cal.fils[cal_id[i]].open = "open";
-                    tmp_cal.fils[cal_id[i]].colspan = "10";
-                    $("#table_cal tbody").append(tmp_cal.fils[cal_id[i]].toString());
-                }else {
-                    $("#table_cal tbody").append(tmp_cal.afficheFils());
-                }
-                tmp_cal = tmp_cal.fils[cal_id[i]];
-            }
-        }*/
+        tmp_cal.removeFils(div);
     }
     majMontant();
 });
 
-
+/*
+ * click sur une zone calendrier
+ *   -  récupère l'instance avec l'indentifiant inscrit dans le tag de l'élément
+ *   -  execute afficheFils ou removeFils en testant si l'élément possède la class open
+ */
 $(document).on("click",".div_compte", function (e)  {
+    if(e.target !== e.currentTarget) return;
     let div = $(this);
     let groupe_id = div.attr('tag');
+    let tmp_banko = bank.get(groupe_id,banko);
     if (!div.hasClass('open')) {
-        let tmp_banko = bank.get(groupe_id,banko);
-
-        if (tmp_banko.fils.length > 0) {
-            div.addClass('open');
-         //   div.addClass('rotate');
-
-            div.after(tmp_banko.afficheFils());
-        }
-    }/*else {
-        let tmp_banko = banko;
-        tmp_banko.open = "open";
-        tmp_banko.rotate = "rotate";
-        if (groupe_id == tmp_banko.groupe_id) {
-            bank.bank_actuel = [];
-            bank.bank_actuel.push(tmp_banko);
-            tmp_banko.open = "";
-            tmp_banko.rotate = "";
-        }
-        $("#table_compte").html("<table><tr>" + tmp_banko.toString() + "</tr></table>");
-        if (groupe_id.length > 1) {
-            for (let i = 1; i < groupe_id.length; i++) {
-                if (i < groupe_id.length - 1) {
-                    tmp_banko.fils[(groupe_id[i] - 1)].open = "open";
-                    tmp_banko.fils[(groupe_id[i] - 1)].rotate = "rotate";
-                    $("#table_compte tbody").find("td.open").last().after(tmp_banko.fils[(groupe_id[i] - 1)].toString());
-                }
-                else {
-                    $("#table_compte tbody").find("td.open").last().after(tmp_banko.afficheFils());
-                }
-                tmp_banko = tmp_banko.fils[(groupe_id[i] - 1)];
-            }
-        }
-    }*/
+        tmp_banko.afficheFils(div);
+    }else {
+        tmp_banko.removeFils(div);
+    }
     majMontant();
 });
 
-
+/*
+* met à jour les différents montants du tableau
+*  chaque div "montant" possède un identifiant sous forme "AxB" A = index de bank_actuel / B = index de cal_actuel (ex => 10x30)
+ */
 let majMontant = () =>  {
-
     let liste_div = "";
     for (let x = 0; x < bank.bank_actuel.length; x++) {
         liste_div += "<div class='row'>";
@@ -141,18 +106,21 @@ let majMontant = () =>  {
     $("#table_montant").html(liste_div);
 }
 
+/*
+* permet de situer le montant sélectionné
+ */
 $(document).on('mouseover','.montant' , function() {
 
     let xy = $(this).attr('id');
     let lim = xy.indexOf('x');
-    console.log(lim);
+
     let x = xy.substr(0,lim);
     let y = xy.substr(lim+1);
-    console.log(y);
+
     let bank_tmp = bank.bank_actuel[x];
     let cal_tmp = calendrier.cal_actuel[y];
 
-    $(".montant").css('background-color' ,'black').css('color','white');
+    $(".montant").css('background-color' ,'black').css('color','white').css('border','solid white 1px');
 
     for (let i = 0; i <= x; i++) {
         $('#'+i+'x'+y).css('background-color' ,"rgb(245,245,"+(i*20)+")").css('color','black');
@@ -161,6 +129,8 @@ $(document).on('mouseover','.montant' , function() {
     for (let i = 0; i <= y; i++) {
         $('#'+x+'x'+i).css('background-color' ,"rgb(245,245,"+(i*20)+")").css('color','black');
     }
+
+    $(this).css('border','solid red 3px');
 
 
     $(".compte").each( function(){
