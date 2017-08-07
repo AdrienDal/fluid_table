@@ -316,14 +316,14 @@ $(document).on('mouseover', '.montant', function () {
     var y = xy.substr(lim + 1);
     var bank_tmp = bank.bank_actuel[x];
     var cal_tmp = calendrier.cal_actuel[y];
-    $(".montant").css('background-color', 'black').css('color', 'white').css('border', 'solid white 1px');
+    $(".montant").css('background-color', 'black').css('color', 'white').css('outline', 'solid white 1px');
     for (var i = 0; i <= x; i++) {
         $('#' + i + 'x' + y).css('background-color', "rgb(245,245," + (i * 20) + ")").css('color', 'black');
     }
     for (var i = 0; i <= y; i++) {
         $('#' + x + 'x' + i).css('background-color', "rgb(245,245," + (i * 20) + ")").css('color', 'black');
     }
-    $(this).css('border', 'solid red 3px');
+    $(this).css('outline', 'solid red 1px');
     $(".compte").each(function () {
         $(this).css('background-color', 'black').css('color', 'white');
         if ($(this).attr('tag') == bank_tmp.groupe_id) {
