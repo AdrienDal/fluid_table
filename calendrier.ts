@@ -41,7 +41,7 @@ class calendrier {
             div.addClass('open');
             let cal_actuel_tmp = [];
 
-            let liste_div = "<div class='row'>";
+            let liste_div = "<div class='container_cal'><div class='row'>";
             for (let i = 0; i < calendrier.cal_actuel.length; i++) {
                 if (calendrier.cal_actuel[i].cal_id != this.cal_id) {
                     cal_actuel_tmp.push(calendrier.cal_actuel[i]);
@@ -52,7 +52,7 @@ class calendrier {
                     }
                 }
             }
-            liste_div += "</div>";
+            liste_div += "</div></div>";
             calendrier.cal_actuel = cal_actuel_tmp;
             div.append(liste_div);
         }

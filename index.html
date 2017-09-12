@@ -7,22 +7,34 @@
 
 </head>
 <body>
+<div style='margin-top : 30px;' id="fluid_table"></div>
 
-<div>
-    <div class="container">
-        <div class="row">
-            <div class="cal">Plan comptable</div>
-            <div class="cal">
-                <div class="row" id="table_cal"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="compte" id="table_compte"></div>
-            <div id="table_montant"></div>
-        </div>
-    </div>
+<!-- aide à l'arrache -->
+<div id="aide" style="position : fixed; display : block; top : 40%; left : 40%; z-index: 9999; background-color: white; border: solid black 1px; padding : 5px; text-align: left">
+    <h3>Aide navigation (compatible Chrome)</h3>
+    cliquer sur les dates pour monter ou descendre de niveau <br/>
+    cliquer sur les groupes pour monter ou descendre de niveau <br/>
+    cliquer sur un montant pour le selectionner, ensuite :
+    <ul>
+        <li>molette de la souris pour monter ou descendre de niveau de groupes</li>
+        <li>molette de la souris et SHIFT pour monter ou descendre de niveau de date</li>
+    </ul>
+    cliquez sur l'icone à côté du montant pour afficher les ecritures<br /><br />
+    <button style="width : 200px;" onclick="$(this).parent().remove();">Fermer</button>
 </div>
+
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="main.js"></script>
+<script>
+    fluid_table({
+        'base_div' : $('#fluid_table'),
+        'width' : 1400,
+        'height' : 700,
+        'data_calendrier' : 'json/Calendrier.json',
+        'data_ecritures' : 'json/Ecritures.json',
+        'data_groupes' : 'json/Groupes.json',
+        'data_comptes' : 'json/Comptes.json'
+    });
+</script>
 </body>
 </html>

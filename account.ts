@@ -24,10 +24,20 @@ class account extends bank {
         return m;
     }
 
-    /*
-    * affiche un compte sous forme de div
-     */
+    public getListeEcritures(from : Date, to : Date): string {
+        let e = "<ul>";
+        for (let i = 0; i < this.ecritures.length; i++) {
+            if (this.ecritures[i].date >= from && this.ecritures[i].date <= to )
+                e += "<li>"+ this.ecritures[i].toString() + "</li>";
+        }
+        e+= "</ul>"
+        return e;
+    }
+
+        /*
+        * affiche un compte sous forme de div
+         */
     public toString() : string {
-        return "<div class='div_compte compte' tag='"+this.groupe_id+"'><img src='img/"+this.logo+".png' /> "  + this.name + "</div>"
+        return "<div class='div_compte compte account' tag='"+this.groupe_id+"'><img src='img/"+this.logo+".png' /><br />"  + this.name + "</div>"
     }
 }

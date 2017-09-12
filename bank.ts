@@ -31,8 +31,16 @@ class bank {
         return m;
     }
 
+    public getListeEcritures(from : Date, to : Date): string {
+        let e = "";
+        for (let i = 0; i < this.fils.length; i++ ){
+            e += this.fils[i].getListeEcritures(from, to);
+        }
+        return e;
+    }
+
     public toString() : string {
-        let div =  "<div class='div_compte compte "+this.open+" "+this.rotate+"' tag='"+this.groupe_id+"'><img src='img/"+this.logo+".png' /> "  + this.name + "</div>";
+        let div =  "<div class='div_compte compte "+this.open+" "+this.rotate+"' tag='"+this.groupe_id+"'><img src='img/"+this.logo+".png' /><br />"  + this.name + "</div>";
         this.open = "";
         this.rotate = "";
         return div;
@@ -55,7 +63,7 @@ class bank {
             div.addClass('open');
             div.addClass('rotate');
             let bank_actuel_tmp = [];
-            let liste_td = "<div class='compte'>";
+            let liste_td = "<div class='compte'><div class='container_compte'>";
 
             for (let i = 0; i < bank.bank_actuel.length; i++) {
                 if (bank.bank_actuel[i].groupe_id != this.groupe_id) {
@@ -66,7 +74,7 @@ class bank {
                         liste_td += "<div class='row'>" + this.fils[i].toString() + "</div>";
                         bank_actuel_tmp.push(this.fils[i]);
                     }
-                    liste_td += "</div>";
+                    liste_td += "</div></div>";
                 }
             }
 

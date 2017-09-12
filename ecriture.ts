@@ -10,4 +10,8 @@ class ecriture {
         this.montant = montant;
         this.account_id = account_id;
     }
+
+    public toString() : string {
+        return "<p>"+this.date.toLocaleDateString('fr-FR')+" "+this.nom+ " "+this.montant.toFixed(2)+"</p>";
+    }
 }

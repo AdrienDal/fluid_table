@@ -12,6 +12,6 @@
     "bank.ts",
     "account.ts",
     "calendrier.ts",
-    "prototype.ts"
+    "event.ts"
   ]
 }
